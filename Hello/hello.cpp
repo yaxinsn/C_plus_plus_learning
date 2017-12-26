@@ -1,7 +1,13 @@
 #include <iostream>
 #include <string.h>
 using namespace std;
-
+/*
+ *  学习了简单的构造函数与析构函数。带参数的构造函数
+ *
+ * 
+ *
+ *
+ * */
 class Hello{
 
 	char* hello;
