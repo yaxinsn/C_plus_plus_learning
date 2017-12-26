@@ -37,7 +37,8 @@ public:
 	{
 		return length*width*highth;
 	}
-	Box(int l,int w, int h)
+	//带了默认参数的构造函数。见main函数里的b2
+	Box(int l=1,int w=1, int h=1)
 	{
 		length = l;
 		width = w;
@@ -63,4 +64,8 @@ int main()
 {
 	Box b1(2,3,4);
 	print_box(b1);
+	Box b2(4,5);
+	print_box(b2);
+//	Box b3(h=5);
+//	print_box(b3);
 }	
