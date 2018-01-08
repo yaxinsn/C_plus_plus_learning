@@ -1,8 +1,10 @@
 
 #include <iostream>
+#include <stdio.h>
+#include <unistd.h>
 
 using namespace std;
-class B
+class animal
 {
 	public:
 		int m_iNum;
@@ -12,44 +14,69 @@ class B
  * */
 		virtual void foo()
 		{
-			printf("foo class B");
+			printf("I am an animal\n");
 		}
+		void who()
+		{
+			printf("I am an animal\n");
+		}
+
 };
  
-class D:public B
+class dog:public animal
 {
 	public:
 		char* m_szName[100];
 		virtual void foo()
 		{
-			printf("foo class D");
+			printf("I am a dog\n");
+		}
+		void who()
+		{
+			printf("%s : I am an dog\n",__FUNCTION__);
 		}
 };
  
-class E:public D
+class puppy:public dog
 {
 	public:
 		int idNum;
 		virtual void foo()
 		{
-			printf("foo class E");
+			printf("I ma a puppy\n");
+		}
+		void who()
+		{
+			printf("%s : I am an puppy\n",__FUNCTION__);
 		}
 };
 
-void func(B* pb)
+void func(animal* pb)
 {
-	D* pd1=static_cast<D*>(pb);
-	D* pd2=dynamic_cast<D*>(pb);
+	dog* pd1=static_cast<dog*>(pb);
+	dog* pd2=dynamic_cast<dog*>(pb);
 
 	cout<< "static_cast ret "<<pd1<<endl;
 	cout<< "dynamic_cast ret "<<pd2<<endl;
+	cout<<"call pd2-> virtual function"<<endl;
+	if(pd2)
+		pd2->foo();
+	else
+		cout<<"pd2 is null , can't call this function"<<endl;
+
+	cout<<"call pd2->no virtual function"<<endl;
+	if(pd2)
+		pd2->who();
+	else
+		cout<<"pd2 is null , can't call this function"<<endl;
+
 }
 
 int main()
 {
-	B* b=new(B);
-	D* d=new(D);
-	E* e=new(E);
+	animal* b=new(animal);
+	dog* d=new(dog);
+	puppy* e=new(puppy);
 	cout<<"func(b)"<<endl;
 	func(b);
 	cout<<"func(d)"<<endl;
