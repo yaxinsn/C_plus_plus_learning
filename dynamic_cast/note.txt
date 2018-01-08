@@ -1,0 +1,24 @@
+
+
+
+dynamic_cast的用法与理解
+
+dynamic_cast <type-id> (expression)
+
+用于动态地转换对象指针的类型。
+
+如：
+animal-->dog-->puppy  
+      -->cat
+func(animal* p)
+{
+	dog dog1=dynamic_cast<dog*)(p);
+}
+把animal的指针转成类型为dog的指针类型。
+
+由于是动态转化，转化是否成功，由p指针真正所指内容的类型来决定。
+如果p=new (animal);或是p=new(cat), p所指内容与dog无关，则转化失败，dog1=NULL
+
+如果p=new(puppy)或是p=new(dog); p所指的对象是一个dog类或是dog子类。这样就转化成功了。
+
+另一个条件：animal, dog, puppy必须要有一虚函数，不然编译不通过。
