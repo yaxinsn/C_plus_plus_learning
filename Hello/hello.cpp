@@ -1,9 +1,11 @@
 #include <iostream>
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 using namespace std;
 /*
- *  学习了简单的构造函数与析构函数。带参数的构造函数
- *
+ *  拷贝构造函数
+ *  如果类带有指针变量，并有动态内存分配，则它必须由程序员编写一个拷贝构造函数，如Hello.hello
  * 
  *
  *
@@ -21,17 +23,26 @@ public:
 	void set_hello(char* new_hello);
 	~Hello();
 	Hello(const char* h);//必须在class里进行声明。
+	Hello(const Hello &obj);
 };
+Hello::Hello(const Hello &obj)
+{
+	cout <<"call copy constructor "<<endl;
+	hello = strdup(obj.hello);
+}
+#if 1
 Hello::Hello(const char* h)
 {
 	hello=strdup(h);
 
 }
+#endif
+
 #if 1
 Hello::~Hello()
 {
-	if(hello)
-		free(hello);
+	if(this->hello)
+		free(this->hello);
 }
 
 void Hello::set_hello(char* new_hello)
@@ -50,4 +61,12 @@ int main()
 	Mh.show_hello("abl");
 	Mh.set_hello("welcome ");
 	Mh.show_hello("lisa");
+
+	Hello Mh2=Mh;
+	Mh2.show_hello("sheryl");
+	Mh2.set_hello("Mh2 welcome");
+	Mh.set_hello("Mh1 welcome");
+	cout<< "Mh2 and Mh show hello"<<endl;
+	Mh.show_hello("sheryl");
+	Mh2.show_hello("sheryl");
 }	
