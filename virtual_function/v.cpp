@@ -2,6 +2,9 @@
 
 /*
  * Animal 与Dog之间没有虚函数 
+ * Animal Fish有一个eating的虚函数
+ *  某函数通过"基类的指针" 访问 子类(们)的成员函数。这叫动态多态。是用虚函数的技术完成的。
+ *
  *
  * */
 using namespace::std;
@@ -57,6 +60,13 @@ void test_eating(class Animal* p)
 {
 	p->eating();
 }
+
+
+void test_eating_moving(class Animal& p)
+{
+	p.eating();
+	p.moving();
+}
 int main(void)
 {
 	class DOG dog;
@@ -68,5 +78,8 @@ int main(void)
 	test_moving(&dog);
 	cout<<"fish test eating"<<endl;
 	test_eating(&fish);
+	cout<<"----------------"<<endl;
+	test_eating_moving(dog);
+	test_eating_moving(fish);
 	return 0;
 }
