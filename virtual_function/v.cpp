@@ -7,6 +7,7 @@
  *  当我们使用基类的引用（或指针）调用一个虚函数时将发生动态绑定（dynamic binding） 因为我们直到运行时才能知道到底调用了哪个版本的虚函数，可能是基类中的版本也可能是派生类中的版本，判断的依据是引用（或指针）所绑 定的对象的真实类型。
  *  与非虚函数在编译时绑定不同，虚函数是在运行时选择函数的版本，所以动态绑定也叫运行时绑定（run-time binding）。
  *
+ * 虚函数的指针会保存到class里的"虚函数表"中。每一个对象都会一个自己的“虚函数表”。类似对函数指针列表。
  *
  * */
 using namespace::std;
@@ -83,5 +84,12 @@ int main(void)
 	cout<<"----------------"<<endl;
 	test_eating_moving(dog);
 	test_eating_moving(fish);
+
+	cout <<"----------------sizeof(dog),sizeof(animal)and sizeof(fish)"<<endl;
+
+	cout<<"dog size:"<<sizeof(dog)<<endl;
+	cout<<"animal size:"<<sizeof(a)<<endl;
+	cout<<"class Fish size:"<<sizeof(class Fish)<<endl;
+	cout <<"size=8, this is a virtial_function_table 's size, this table has only function point. so is 8"<<endl;
 	return 0;
 }
