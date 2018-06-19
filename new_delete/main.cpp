@@ -39,6 +39,22 @@ void DOG::show()
 }
 
 
+void array_dog()
+{
+	int i;
+	class DOG* p=new class DOG[3];
+	p[0].init(1,"dog1");
+	p[1].init(2,"dog2");
+	p[2].init(3,"dog3");
+
+	for(i=0;i<3;i++)
+	{
+		p[i].show();
+	}
+
+	delete []p;
+}
+
 int main()
 {
 
@@ -51,5 +67,7 @@ int main()
 	d1.show();
 
 	delete pd2;
+
+	array_dog();
 	return 0;
 }
