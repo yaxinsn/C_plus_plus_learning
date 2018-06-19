@@ -42,7 +42,7 @@ void DOG::show()
 void array_dog()
 {
 	int i;
-	class DOG* p=new class DOG[3];
+ 	DOG* p=new DOG[3];
 	p[0].init(1,"dog1");
 	p[1].init(2,"dog2");
 	p[2].init(3,"dog3");
