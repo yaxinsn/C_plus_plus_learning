@@ -52,5 +52,12 @@ int main(void)
 	for(i = 0; i < Vp.size(); i++){
      		 cout << "value of vec [" << i << "] = ";
 		Vp[i].show();
-  	 }	
+  	 }
+
+	 vector<Person>::iterator v = Vp.begin();
+   while( v != Vp.end()) {
+      cout << "value of v = ";
+	v->show();
+      v++;
+   }	
 }
