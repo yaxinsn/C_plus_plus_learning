@@ -11,11 +11,17 @@ class Person
 	public:
 		Person(int age,string name);
 	void show();
+friend	ostream& operator<<(ostream& out, Person& );
 private:
 	int age;
 	string name;		
 };
 
+ostream& operator<<(ostream& out, Person& p)
+	{	
+   		 out<<"age : "<<p.age<<" name: "<<p.name;
+    		return out;
+	}
 void Person::show()
 {
 	//string ret;
@@ -45,6 +51,9 @@ int main(void)
 	    cout << "vector size = " << Vp.size() << endl;	
 	Person a(4,"a");
 	Person b(5,"b");
+cout<<"operator < < "<<endl;
+	cout<<b<<endl;
+
 	Vp.push_back(a);
 	Vp.push_back(b);
 
