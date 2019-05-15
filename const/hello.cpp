@@ -8,7 +8,7 @@ using namespace std;
  * A1 const 修饰一个类中成员变量，则此变量必要用初始化列表来进行初始化。
  * A2 const 修饰一个类中成员函数，则表示此成员函数不会修改类中所有成员变量。
  * A3 const 修饰一个函数入参的引用时，表示此引用的内容不得在此函数中发生变化。
- * 
+ * A3.1 const 修饰一个函数的“引用入参”时，那么这个函数只可以使用入参的 const的成员函数呢？ 
  *
  *
  * */
@@ -18,6 +18,11 @@ class Student{
 	const int m_id; //A1
 	int m_score;
 public:
+	int show_info_no_const(void) 
+	{
+		cout  <<"no const function: name "<< m_name << ", id " << m_id<<endl;
+		return 0;
+	}
 	int show_info(void) const 
 	{
 		cout  <<"name "<< m_name << ", id " << m_id<<endl;
@@ -56,8 +61,12 @@ void Student::set_name(char* new_name)
 
 }
 #endif
-
-
+//测试A3.1
+void show_student(const Student& Stu)
+{
+	Stu.show_info();
+//	Stu.show_info_no_const(); //A3.1 此函数实际上没有改变Stu的值 ，但是由于它没有使用const进行修饰，所以发生了const属性丢失的情况。
+}
 int main()
 {
 	Student A1;
