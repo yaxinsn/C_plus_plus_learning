@@ -4,13 +4,13 @@
 #include <pthread.h>
 
 using namespace std;
-class Student{
+class Singleton{
 
 private:
-	~Student(){Destory();};
-	Student(){};
+	~Singleton(){Destory();};
+	Singleton(){};
 	//copy-construct:
-	Student(Student& s); 
+	Singleton(Singleton& s); 
 	
 	string m_name;
 	int m_id; //A1
@@ -28,10 +28,10 @@ public:
 		return 0;
 	}
 	void set_name(char* new_name);
-	static Student* getInstance(); //C2
+	static Singleton* getInstance(); //C2
 	void Destory();
 	
-	static Student* m_instance; //C1
+	static Singleton* m_instance; //C1
 	 
 	static pthread_mutex_t m_mutex;
 };

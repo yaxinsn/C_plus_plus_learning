@@ -2,12 +2,12 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "Student.h"
+#include "Singleton.h"
 
 
 int main()
 {
-	Student::getInstance()->set_name("abc");
-	Student::getInstance()->show_info();
+	Singleton::getInstance()->set_name("abc");
+	Singleton::getInstance()->show_info();
 	return 0;
 }	

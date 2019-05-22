@@ -5,7 +5,7 @@ TARGET += test
 
 
 
-SRC=main.cpp Student.cpp
+SRC=main.cpp Singleton.cpp
 
 %.o:%.cpp
 	g++ -g  -c -o $@ $^
