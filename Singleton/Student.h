@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include <stdio.h>
+#include <pthread.h>
 
 using namespace std;
 class Student{
@@ -31,4 +32,6 @@ public:
 	void Destory();
 	
 	static Student* m_instance; //C1
+	 
+	static pthread_mutex_t m_mutex;
 };
