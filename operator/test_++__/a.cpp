@@ -7,8 +7,8 @@ class Line
 public:
 	Line(int l);
 	Line(const Line& T);
-	Line operator--();
-	Line operator--(int);
+	Line & operator--();//perfix
+	Line operator--(int);//postfix
 
 	int len;
 	void show(void)
@@ -30,19 +30,17 @@ Line::Line(int l=99)
 	cout<<"Line constructor: len "<<len<<endl;
 }
 
-Line Line::operator--()
+Line & Line::operator--()
 {
-	Line t;
-	this->len--;
-	t=*this;
-	return t;
+	--this->len; //前减量。
+	return *this;
 }
 
 Line Line::operator--(int)
 {
 	Line t;
 	t.len=this->len;
-	this->len--;
+	this->len--;//postfix 后减量。
 	return t;
 }
 
