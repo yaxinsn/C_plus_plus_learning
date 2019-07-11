@@ -17,6 +17,10 @@ public:
 	~Hello();
 	Hello(const char* h);
 	Hello(const char* h,const char* j);
+	explicit Hello(int a,int b,int c)
+	{
+		cout <<__func__<<":" <<__LINE__<<" explicit Hello(int a,int b, inti c)"<<endl;
+	}
 	Hello(std::initializer_list<char*>);//B1 初始值列
 	Hello(const Hello &obj);
 };
@@ -65,5 +69,9 @@ int main()
 	Hello H1("H1","H1");
 	Hello H2{"H2","H2"}; //使用初始值列initializer_list
 	Hello H3{"H2","H2","XX"}; //使用初始值列initializer_list
+	Hello H4{1,3,4};
+	Hello H5(1,3,4);
+	//Hello H6 = {1,3,4};//error , =号右是一个initializer_list，它不能与explicit的构造函数一起使用
+//	Hello H7 = {(int)1,(int)3,(int)4}; 这也不行。
 	return 0;
 }	
