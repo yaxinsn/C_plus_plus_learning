@@ -8,9 +8,11 @@ class Line
       int getLength( void );                             
       friend void display(Line obj);                              
       friend void line_obj_count();
-      Line( int len );           // ¼òµ¥µÄ¹¹Ôìº¯Êı     
-      Line( const Line &obj);  // ¿½±´¹¹Ôìº¯Êı           
-      ~Line();                     // Îö¹¹º¯Êı           
+      //Line():p_len(999);compile error 2019-6-11
+      Line();
+      Line( int len );           // ç®€å•çš„æ„é€ å‡½æ•°     
+      Line( const Line &obj);  // æ‹·è´æ„é€ å‡½æ•°           
+      ~Line();                     // ææ„å‡½æ•°           
                                                          
    private:
       int p_len;               
@@ -19,8 +21,17 @@ class Line
 };                                                       
                            
 int  Line::obj_count = 0;                              
-// ³ÉÔ±º¯Êı¶¨Òå£¬°üÀ¨¹¹Ôìº¯Êı                            
-Line::Line(int len):p_len(len)                                      
+
+Line::Line():p_len(999) //é»˜è®¤åˆå§‹åŒ–
+{
+	cout << "default construtor "<< endl;
+	obj_count++;
+	ptr = new int;
+	*ptr = p_len;
+} 
+
+// æˆå‘˜å‡½æ•°å®šä¹‰ï¼ŒåŒ…æ‹¬æ„é€ å‡½æ•°                            
+Line::Line(int len):p_len(len)//åˆå§‹åŒ–åˆ—è¡¨æ¥åˆå§‹åŒ–å­—æ®µ--2019-6-10                              
 //Line::Line(int len)                                 
 {                                                        
     cout << "Normal constructor allocating ptr" << endl; 
@@ -65,16 +76,17 @@ void display(Line obj)
 	cout <<" line count  "<<Line::obj_count<<endl;
 }
 
-// ³ÌĞòµÄÖ÷º¯Êı                                          
+// ç¨‹åºçš„ä¸»å‡½æ•°                                          
 int main( )                                              
 {                                                        
    Line line(10);                                        
                                                          
+   Line x;
 
    display2(&line);                  
 //   display3(line);                  
                                                      
-
+	display2(&x);
 
 	line_obj_count();    
    return 0;                                             
